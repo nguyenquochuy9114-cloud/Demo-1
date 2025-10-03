@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crypto Analyzer</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body style="background-color:#111; color:white; font-family:Arial;">
+    <h1>Crypto Analyzer</h1>
+
+    {% if coins %}
+        <h2>Select a Coin (Top 300)</h2>
+        <ul>
+        {% for coin in coins %}
+            <li><a href="/analyze/{{ coin.id }}">{{ coin.name }} ({{ coin.symbol.upper() }})</a></li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if chart %}
+        <p><strong>Time:</strong> {{ time }}</p>
+        <p><strong>Price:</strong> {{ price }}</p>
+        <p><strong>Market Cap:</strong> {{ market_cap }}</p>
+        <p><strong>Volume % Market Cap:</strong> {{ vol_percent }}</p>
+        <p><strong>Inflow:</strong> {{ inflow }}</p>
+        <p><strong>Outflow:</strong> {{ outflow }}</p>
+        <p><strong>Volume 7/30 Ratio:</strong> {{ vol_ratio }}</p>
+        <p><strong>Signal:</strong> {{ signal }}</p>
+        <div>{{ chart|safe }}</div>
+    {% endif %}
+</body>
+</html>
